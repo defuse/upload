@@ -15,8 +15,9 @@ if [ $# -eq 2 ]; then
     echo "$url" | xclip -sel clipboard
     echo "$url"
 elif [ $# -eq 1 ]; then 
-    scp "$1" "$SSH_USER@$SSH_HOST:$SSH_PATH/$1"
-    url="$HTTP_URL/$1"
+    BN=$(basename "$1")
+    scp "$1" "$SSH_USER@$SSH_HOST:$SSH_PATH/$BN"
+    url="$HTTP_URL/$BN"
     echo "$url" | xclip -sel clipboard
     echo "$url"
 else
