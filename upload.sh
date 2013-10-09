@@ -10,13 +10,17 @@ readonly SSH_PATH="~/www/tmp_w"
 readonly HTTP_URL="https://defuse.ca/tmp_w"
 
 if [ $# -eq 2 ]; then
-    scp "$1" "$SSH_USER@$SSH_HOST:$SSH_PATH/$2"
+    file=$(readlink -f "$1")
+    scp "$file" "$SSH_USER@$SSH_HOST:$SSH_PATH/$2"
+    strip=$(echo -n "$2" | tr -d " :()\\\\")
     url="$HTTP_URL/$2"
     echo "$url" | xclip -sel clipboard
     echo "$url"
 elif [ $# -eq 1 ]; then 
+    file=$(readlink -f "$1")
     BN=$(basename "$1")
-    scp "$1" "$SSH_USER@$SSH_HOST:$SSH_PATH/$BN"
+    BN=$(echo -n "$BN" | tr -d " :()\\\\")
+    scp "$file" "$SSH_USER@$SSH_HOST:$SSH_PATH/$BN"
     url="$HTTP_URL/$BN"
     echo "$url" | xclip -sel clipboard
     echo "$url"
