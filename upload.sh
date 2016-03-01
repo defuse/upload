@@ -4,10 +4,10 @@
 # The file will be uploaded, given [name in url] on the web server, and the
 # URL to the file will be printed and put on the clipboard.
 
-readonly SSH_USER=defuse
+readonly SSH_USER=taylordeploy
 readonly SSH_HOST=defuse.ca
-readonly SSH_PATH="~/www/tmp_w"
-readonly HTTP_URL="https://defuse.ca/tmp_w"
+readonly SSH_PATH="/var/www/defuse.ca-extras/upload/tmp_w"
+readonly HTTP_URL="https://defuse.ca/upload/tmp_w"
 
 if [ $# -eq 2 ]; then
     file=$(readlink -f "$1")
